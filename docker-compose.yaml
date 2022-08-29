@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+    mongo:
+        container_name: some-mongo
+        # environment:
+        #     - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo-root
+        image: mongo:4.2.22
+        volumes:
+            - $PWD/mongo-data:/data/db
+        # ports:
+        #     - 27017:27017
+    master-api:
+        container_name: master-api
+        build: .
+        # environment:
+        #     - API_URI=$API_URI
+        image: master-api:0.1
+        ports:
+            - 8000:8000

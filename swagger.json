@@ -1,0 +1,314 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "APIs Document",
+    "description": "your description here",
+    "termsOfService": "",
+    "contact": {
+      "name": "Tran Son hoang",
+      "email": "son.hoang01@gmail.com",
+      "url": "https://hoangtran.co"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "paths": {
+    "/entries": {
+      "get": {
+        "tags": [
+          "GetEntries"
+        ],
+        "description": "Get entries",
+        "operationId": "GetEntries",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "description": "name of entry (matches via substring - i.e. 'at' would return 'cat' and 'atlas')",
+            "required": false
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "description of entry (matches via substring)",
+            "required": false
+          },
+          {
+            "name": "auth",
+            "in": "query",
+            "description": "auth type of entry (can only be values matching in project or null)",
+            "required": false
+          },
+          {
+            "name": "https",
+            "in": "query",
+            "description": "return entries that support HTTPS or not",
+            "required": false
+          },
+          {
+            "name": "cors",
+            "in": "query",
+            "description": "CORS support for entry ('yes', 'no', or 'unknown')",
+            "required": false
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "return entries of a specific category",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "entries list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/schema/entries"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/random": {
+      "get": {
+        "tags": [
+          "GetRandomEntry"
+        ],
+        "description": "Get random entry",
+        "operationId": "GetRandomEntries",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "description": "name of entry (matches via substring - i.e. 'at' would return 'cat' and 'atlas')",
+            "required": false
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "description of entry (matches via substring)",
+            "required": false
+          },
+          {
+            "name": "auth",
+            "in": "query",
+            "description": "auth type of entry (can only be values matching in project or null)",
+            "required": false
+          },
+          {
+            "name": "https",
+            "in": "query",
+            "description": "return entries that support HTTPS or not",
+            "required": false
+          },
+          {
+            "name": "cors",
+            "in": "query",
+            "description": "CORS support for entry ('yes', 'no', or 'unknown')",
+            "required": false
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "return entries of a specific category",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "random entry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/schema/entriesSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "GetCategories"
+        ],
+        "description": "Get categories",
+        "operationId": "GetCategories",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "categories list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/schema/categories"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "HealthCheck"
+        ],
+        "description": "Health check",
+        "operationId": "HealthCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Health check response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/schema/health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/popularApis": {
+      "get": {
+        "tags": [
+          "popularApis"
+        ],
+        "description": "The 10 popular apis",
+        "operationId": "popularApis",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The 10 popular apis response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/schema/popularApis"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "schema": {
+    "categories": {
+      "$schema": "https://json-schema.org/draft-04/schema#",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "example": 7
+        },
+        "categories": {
+          "type": "array"
+        }
+      }
+    },
+    "entry": {
+      "$schema": "https://json-schema.org/draft-04/schema#",
+      "properties": {
+        "API": {
+          "type": "string",
+          "example": "aaa"
+        },
+        "Description": {
+          "type": "string",
+          "example": "aaa"
+        },
+        "Auth": {
+          "type": "string",
+          "example": "aaa"
+        },
+        "HTTPS": {
+          "type": "boolean",
+          "example": true
+        },
+        "Cors": {
+          "type": "string",
+          "example": "aaa"
+        },
+        "Link": {
+          "type": "string",
+          "example": "aaa"
+        },
+        "Category": {
+          "type": "string",
+          "example": "aaa"
+        }
+      },
+      "required": [
+        "API",
+        "Description",
+        "Auth",
+        "HTTPS",
+        "Cors",
+        "Link",
+        "Category"
+      ]
+    },
+    "entries": {
+      "$schema": "https://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "example": 7
+        },
+        "entries": {
+          "type": "array",
+          "$ref": "#/schema/entry"
+        }
+      },
+      "required": [
+        "count",
+        "entries"
+      ]
+    },
+    "health": {
+      "$schema": "https://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "alive": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "required": [
+        "alive"
+      ]
+    },
+    "popularApis": {
+      "$schema": "https://json-schema.org/draft-04/schema#",
+      "type": "array",
+      "$ref": "#/schema/popularApi"
+    },
+    "popularApi": {
+      "$schema": "https://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string",
+          "example": "https://pulic-api.org/random"
+        },
+        "count": {
+          "type": "integer",
+          "example": 2
+        }
+      },
+      "required": [
+        "api",
+        "count"
+      ]
+    }
+  }
+}
