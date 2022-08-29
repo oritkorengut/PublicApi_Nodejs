@@ -126,7 +126,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/schema/entriesSchema"
+                  "$ref": "#/schema/entries"
                 }
               }
             }
