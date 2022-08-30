@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+// const allRouter = require('./Routes/allRouter');
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require("./swagger.json");
 const axios = require("axios");
@@ -9,6 +11,7 @@ const logRequest = require("./logRequest");
 const db = require("./config/db");
 dotenv.config();
 db.connectToServer();
+// app.use('/allRouter',allRouter);
 
 app.use(cors())
 
