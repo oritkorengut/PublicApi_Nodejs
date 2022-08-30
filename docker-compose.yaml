@@ -17,6 +17,7 @@ services:
         build: .
         environment:
             - API_URI=$API_URI
+            - NODE_TLS_REJECT_UNAUTHORIZED=0
         image: master-api:0.1
         ports:
             - 8000:8000
