@@ -3,17 +3,23 @@ services:
     mongo:
         container_name: some-mongo
         # environment:
-        #     - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo-root
+        #   MONGO_INITDB_ROOT_USERNAME: orit
+        #   MONGO_INITDB_ROOT_PASSWORD: 1234 
+        #     - MONGO_INITDB_ROOT_PASSWORD_FILE
         image: mongo:4.2.22
         volumes:
-            - $PWD/mongo-data:/data/db
+            - mongo-data:/data/db
         # ports:
         #     - 27017:27017
+         
     master-api:
         container_name: master-api
         build: .
-        # environment:
-        #     - API_URI=$API_URI
+        environment:
+            - API_URI=$API_URI
         image: master-api:0.1
         ports:
             - 8000:8000
+
+volumes:
+    mongo-data:
